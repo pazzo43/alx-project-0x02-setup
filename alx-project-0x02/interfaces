@@ -1,1 +1,175 @@
+# index.ts
+Scaffold Next.js + TypeScript + Tailwind
+1. Create the Next.js Project
+
+Open your terminal and run:
+npx create-next-app@latest alx-project-2 --typescript --tailwind --eslint
+
+This command automatically sets up:
+
+Next.js
+
+TypeScript
+
+Tailwind CSS
+
+ESLint
+
+A clean folder structure
+
+2. Create Required Folders & Files
+
+Go into your project:
+cd alx-project-2
+Now create the folders:
+mkdir -p components/layout
+mkdir -p interfaces
+mkdir -p public/assets/images
+
+Create the file:
+touch components/layout/Header.tsx
+touch interfaces/index.ts
+
+3. Add Content to Header.tsx
+
+Open:
+
+components/layout/Header.tsx
+
+Add this minimal content:
+const Header = () => {
+  return (
+    <header className="bg-blue-600 text-white p-4">
+      <h1 className="text-xl font-bold">My Next.js Project</h1>
+    </header>
+  );
+};
+
+export default Header;
+
+4. Add Content to interfaces/index.ts
+export interface ExampleInterface {
+  id: number;
+  name: string;
+}
+(You can update interfaces later when real components are added.)
+
+  5. Add Welcome Text to pages/index.tsx
+
+Open /pages/index.tsx and replace the default content with:
+import Header from "../components/layout/Header";
+
+export default function Home() {
+  return (
+    <div>
+      <Header />
+      <main className="p-6">
+        <h2 className="text-2xl font-semibold">Welcome to ALX Project 0x02</h2>
+        <p className="mt-2 text-gray-600">
+          Your Next.js + TypeScript + Tailwind setup is complete!
+        </p>
+      </main>
+    </div>
+  );
+}
+
+6. Run the Application
+
+Start the project:
+npm run dev -- -p 3000
+
+Then visit:
+
+http://localhost:3000
+
+You should see:
+
+The blue header
+
+The “Welcome to ALX Project 0x02” message
+
+dynamic, reusable Card component
+Step 1: Define the Props Interface
+
+In interfaces/index.ts, add a CardProps interface:
+// interfaces/index.ts
+
+export interface CardProps {
+  title: string;
+  content: string;
+}
+This ensures our Card component knows it should receive a title and content as strings.
+
+Step 2: Create the Card Component
+
+Create components/common/Card.tsx:
+// components/common/Card.tsx
+import React from "react";
+import { CardProps } from "@/interfaces";
+
+const Card: React.FC<CardProps> = ({ title, content }) => {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-6 m-4 hover:shadow-xl transition-shadow duration-300">
+      <h2 className="text-xl font-semibold mb-2">{title}</h2>
+      <p className="text-gray-700">{content}</p>
+    </div>
+  );
+};
+
+export default Card;
+
+Explanation of Tailwind classes:
+
+bg-white → white background
+
+shadow-md → medium shadow for depth
+
+rounded-lg → rounded corners
+
+p-6 → padding
+
+m-4 → margin
+
+hover:shadow-xl + transition-shadow → subtle hover effect
+
+text-xl font-semibold → for the title
+
+text-gray-700 → readable gray content text
+
+Step 3: Use the Card Component in Home Page
+
+Edit pages/home.tsx:
+// pages/home.tsx
+import React from "react";
+import Card from "@/components/common/Card";
+
+const Home: React.FC = () => {
+  return (
+    <div className="flex flex-wrap justify-center p-8">
+      <Card title="Card 1" content="This is the first card content." />
+      <Card title="Card 2" content="This is the second card content." />
+      <Card title="Card 3" content="This is the third card content." />
+    </div>
+  );
+};
+
+export default Home;
+
+What’s happening:
+
+flex flex-wrap justify-center → cards are laid out in a row and wrap to next line if necessary
+
+p-8 → page padding
+
+Multiple <Card> instances with different title and content
+
+Result:
+
+A reusable Card component
+
+Passes dynamic props for title/content
+
+Displays nicely on the Home page
+
+Fully typed with TypeScript
 
