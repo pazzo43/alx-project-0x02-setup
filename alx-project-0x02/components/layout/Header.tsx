@@ -274,7 +274,7 @@ const PostsPage: React.FC = () => {
 
 export default PostsPage;
 
-Verify Functionality
+3.Verify Functionality
 After running your development server (npm run dev), navigate between the routes (/home, /about, /posts) by clicking the links in the header.
 
 Outcome: The navigation bar will appear on all three pages, and clicking the links will instantly transition you to the corresponding page, confirming that the routing works correctly.
